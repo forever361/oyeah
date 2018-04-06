@@ -45,7 +45,7 @@ public class WelcomeActivity extends Activity {
         public void onClick(View v){
             switch (v.getId()) {
                 case R.id.button:
-                    Intent i = new Intent(WelcomeActivity.this ,FruitActivity.class);
+                    Intent i = new Intent(WelcomeActivity.this ,FruitSpalsh.class);
                     startActivity(i);
                     break;
 
