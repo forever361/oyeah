@@ -10,11 +10,13 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class FruitActivity extends AppCompatActivity  {
 
@@ -3419,6 +3421,26 @@ public class FruitActivity extends AppCompatActivity  {
 
 
 		}
+	}
+
+	private long lastBackTime = 0;
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		// 判断按下的键是否是“返回”键
+		if(keyCode == KeyEvent.KEYCODE_BACK) {
+
+			if (mediaPlayer != null) {
+				mediaPlayer.stop();
+				mediaPlayer.release();
+				mediaPlayer = null;
+			}
+
+			finish();
+
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 
 }

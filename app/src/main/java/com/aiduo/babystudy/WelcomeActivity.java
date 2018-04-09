@@ -62,6 +62,7 @@ public class WelcomeActivity extends Activity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         // 判断按下的键是否是“返回”键
         if(keyCode == KeyEvent.KEYCODE_BACK) {
+
             // 判断当前时间与上次按“返回”键的时间差是否在2秒之内
             if(System.currentTimeMillis() - lastBackTime < 2000) {
                 // 返回，且不消费，即让系统按照默认方式处理
