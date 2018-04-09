@@ -4,10 +4,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class WelcomeActivity extends Activity {
 
@@ -52,6 +54,31 @@ public class WelcomeActivity extends Activity {
             }
         }
     }
+
+
+    private long lastBackTime = 0;
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        // 判断按下的键是否是“返回”键
+        if(keyCode == KeyEvent.KEYCODE_BACK) {
+            // 判断当前时间与上次按“返回”键的时间差是否在2秒之内
+            if(System.currentTimeMillis() - lastBackTime < 2000) {
+                // 返回，且不消费，即让系统按照默认方式处理
+                return super.onKeyDown(keyCode, event);
+            }
+            // 记录下当前按下“返回”键的时间
+            lastBackTime = System.currentTimeMillis();
+            // 提示
+            Toast.makeText(this, "再次点击返回键退出！", Toast.LENGTH_SHORT).show();
+            // 消费
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+
+
 
 
 
